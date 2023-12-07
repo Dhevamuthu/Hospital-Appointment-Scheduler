@@ -13,7 +13,7 @@
       </ImageView>
       <TextField fx:id="userTextField" layoutX="523.0" layoutY="273.0" prefHeight="35.0" prefWidth="271.0" promptText="user id (P001)" />
       <PasswordField fx:id="passwordTextField" layoutX="523.0" layoutY="367.0" prefHeight="35.0" prefWidth="271.0" promptText="password" />
-      <Button fx:id="loginButton" layoutX="377.0" layoutY="461.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="62.0" prefWidth="132.0" style="-fx-font-size: 20; -fx-background-color: black; -fx-font-family: Lato;" text="Login" textFill="#efecec" />
+      <Button fx:id="loginButton" layoutX="377.0" layoutY="461.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="62.0" prefWidth="132.0" style="-fx-font-size: 20; -fx-background-color: black; -fx-font-family: Lato;" text="Login" textFill="#efecec" />
       <Button fx:id="cancelButton" layoutX="574.0" layoutY="461.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="62.0" prefWidth="132.0" style="-fx-font-size: 20; -fx-background-color: black; -fx-font-family: Lato;" text="Cancel" textFill="#efecec" />
       <Button fx:id="registerButton" layoutX="597.0" layoutY="566.0" mnemonicParsing="false" onAction="#registerButtonOnAction" style="-fx-background-color: BLACK; -fx-font-family: Lato;" text="Register" textFill="WHITE" />
    </children>

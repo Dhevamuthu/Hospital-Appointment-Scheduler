@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 public class HospitalRegController {
 
@@ -52,18 +52,18 @@ public class HospitalRegController {
         stage.close();
     }
     public void registerButtonOnAction() throws SQLException {
-        try{
-            Connection connection= DatabaseManager.getDbInstance();
+        try {
+            Connection connection = DatabaseManager.getDbInstance();
             String name = nameTextField.getText();
             String email = emailTextField.getText();
-            String number =numberTextField.getText();
+            String number = numberTextField.getText();
             String selectedValue = comboBox.getValue();
-            String password=passwordTextField.getText();
-            String re_password=repasswordTextField.getText();
-            String hosRegID=HregidTextField.getText();
+            String password = passwordTextField.getText();
+            String re_password = repasswordTextField.getText();
+            String hosRegID = HregidTextField.getText();
 
-            int num= Integer.parseInt(number);
-            int hRegId=Integer.parseInt(hosRegID);
+            //int num = Integer.parseInt(number);
+            //int hRegId = Integer.parseInt(hosRegID);
 
             if (name.isEmpty() || email.isEmpty() || number.isEmpty() || selectedValue == null) {
                 showAlert("Error", "Please fill in all the fields.");
@@ -74,17 +74,39 @@ public class HospitalRegController {
                 return;
             }
 
-            String query="Insert into hospital (HID,Name,Location,ContactNumber,Mailid,Password,HRefId) values(?,?,?,?,?,?,?)";
-            PreparedStatement statement=connection.prepareStatement(query);
+            String lastHID = null;
+            String lastHID2=null;
+            String selectQuery = "SELECT * FROM hospital ORDER BY HID DESC LIMIT 1";
+            PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
 
-            String hid="H006";
-            statement.setString(1,hid);
-            statement.setString(2,name);
-            statement.setString(4,String.valueOf(num));
-            statement.setString(3,selectedValue);
-            statement.setString(5,email);
-            statement.setString(6,password);
-            statement.setString(7,String.valueOf(hRegId));
+                //storing the result in result set:
+            ResultSet resultSet = selectStmt.executeQuery();
+
+            if (resultSet.next()) {
+                try{
+                    lastHID = resultSet.getString(1);
+                    lastHID2=lastHID.substring(1);
+                    int oldID=(Integer.parseInt(lastHID2))+1;
+                    lastHID2=String.valueOf(oldID);
+                    lastHID="H"+lastHID2;
+                }
+                catch (NumberFormatException e){ e.printStackTrace();}
+
+
+            } else {
+                System.out.println("No rows found in the table");
+            }
+
+            String query = "Insert into hospital (HID,Name,Location,ContactNumber,Mailid,Password,HRefId) values(?,?,?,?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            //String hid = "H006";
+            statement.setString(1, lastHID);
+            statement.setString(2, name);
+            statement.setString(4, number);
+            statement.setString(3, selectedValue);
+            statement.setString(5, email);
+            statement.setString(6, password);
+            statement.setString(7, hosRegID);
             if (statement.executeUpdate() > 0) {
                 showAlert("Registration Completed", "User successfully registered!");
             } else {
@@ -94,11 +116,7 @@ public class HospitalRegController {
             statement.close();
             connection.close();
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        //showAlert("Registration Completed", "Registration successful!");
+        catch (Exception e){ e.printStackTrace();}
     }
 
     private void showAlert(String title, String content) {

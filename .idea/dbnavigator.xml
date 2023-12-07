@@ -23,7 +23,9 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.patient" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.hospital" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.doctor" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.appointment" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
