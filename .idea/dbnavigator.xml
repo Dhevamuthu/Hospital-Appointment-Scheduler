@@ -21,10 +21,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/doctor" />
       <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/schedule" />
-      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/appointment" />
-      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/hospital" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">

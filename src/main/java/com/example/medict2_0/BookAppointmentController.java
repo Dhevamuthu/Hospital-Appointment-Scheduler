@@ -1,6 +1,6 @@
 package com.example.medict2_0;
 
-<<<<<<< HEAD
+
 import com.example.medict2_0.utils.DatabaseManager;
 import com.example.medict2_0.utils.GlobalUser;
 import javafx.event.ActionEvent;
@@ -39,7 +39,7 @@ public class BookAppointmentController {
 
     @FXML
     void handleSubmitButtonAction(ActionEvent event) throws SQLException {
-        Connection connection=DatabaseManager.getDbInstance();
+        Connection connection = DatabaseManager.getDbInstance();
 
         String cityValue = cityCombo.getValue();
         String doctorValue = doctorCombo.getValue();
@@ -49,7 +49,7 @@ public class BookAppointmentController {
         LocalDate dateValue = dateDatePicker.getValue();
         String formattedDate = dateValue.toString();
 
-        if(cityValue == null || hospitalValue == null || specialityValue == null || timeValue == null || formattedDate.isEmpty()){
+        if (cityValue == null || hospitalValue == null || specialityValue == null || timeValue == null || formattedDate.isEmpty()) {
             showAlert("Error", "Please fill in all the fields.");
             return;
         }
@@ -57,37 +57,37 @@ public class BookAppointmentController {
         //step 1: retrieve did,hid
         String doctorQuery = "SELECT DID,HID FROM doctor where Name=(?)";
         PreparedStatement doctorStmt = connection.prepareStatement(doctorQuery);
-        doctorStmt.setString(1,doctorValue);
+        doctorStmt.setString(1, doctorValue);
         ResultSet doctorResultSet = doctorStmt.executeQuery();
 
-        String dID=null;
-        String hID=null;
-        while(doctorResultSet.next()){
-            dID=doctorResultSet.getString("DID");
-            hID=doctorResultSet.getString("HID");
+        String dID = null;
+        String hID = null;
+        while (doctorResultSet.next()) {
+            dID = doctorResultSet.getString("DID");
+            hID = doctorResultSet.getString("HID");
         }
-        
+
         //step 2:retrieve sid
         String specialtyQuery = "SELECT SID FROM specialty where SName=(?)";
         PreparedStatement specialtyStmt = connection.prepareStatement(specialtyQuery);
-        specialtyStmt.setString(1,specialityValue);
+        specialtyStmt.setString(1, specialityValue);
         ResultSet specialtyResultSet = specialtyStmt.executeQuery();
 
-        String sID=null;
-        while(specialtyResultSet.next()){
-            sID=specialtyResultSet.getString("SID");
+        String sID = null;
+        while (specialtyResultSet.next()) {
+            sID = specialtyResultSet.getString("SID");
         }
 
         //step 3:check with slots
         int scheduleSlots;
         String selectQuery = "Select slots from schedule where DID=(?) and HID=(?) and Date=(?) and Time=(?)";
-        PreparedStatement selectStmt=connection.prepareStatement(selectQuery);
-        selectStmt.setString(1,dID);
-        selectStmt.setString(2,hID);
-        selectStmt.setString(3,formattedDate);
-        selectStmt.setString(4,timeValue);
+        PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
+        selectStmt.setString(1, dID);
+        selectStmt.setString(2, hID);
+        selectStmt.setString(3, formattedDate);
+        selectStmt.setString(4, timeValue);
 
-        ResultSet selectResultSet=selectStmt.executeQuery();
+        ResultSet selectResultSet = selectStmt.executeQuery();
 
         if (selectResultSet.next()) {
             scheduleSlots = selectResultSet.getInt("Slots");
@@ -102,36 +102,42 @@ public class BookAppointmentController {
                 ResultSet appResultSet = appStmt.executeQuery();
 
                 if (appResultSet.next()) {
-                    try{
+                    try {
                         strAID = appResultSet.getString(1);
-                        int oldAID=(Integer.parseInt(strAID));
-                        oldAID=oldAID+1;
-                        strAID=String.valueOf(oldAID);
+                        int oldAID = (Integer.parseInt(strAID));
+                        oldAID = oldAID + 1;
+                        strAID = String.valueOf(oldAID);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
                     }
-                    catch (NumberFormatException e){ e.printStackTrace();}
 
 
-                } else { System.out.println("No rows found in the table");}
+                } else {
+                    System.out.println("No rows found in the table");
+                }
 
                 //step 5: inserting in the  appointment table
-                try{
-                    String userID= GlobalUser.getUserId();
-                    String DT=formattedDate+","+timeValue;
+                try {
+
+                    Connection connection2=DatabaseManager.getDbInstance();
+                    String userID = GlobalUser.getUserId();
+                    String DT = formattedDate + "," + timeValue;
                     String insertQuery = "insert into appointment (AID,PID,DID,HID,SID,DT,status) values(?,?,?,?,?,?,?)";
                     PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
 
-                    System.out.println(strAID+" "+userID+" "+dID+" "+hID+" "+sID+" "+DT);
-                    insertStatement.setString(1,strAID);
-                    insertStatement.setString(2,userID);
-                    insertStatement.setString(3,dID);
-                    insertStatement.setString(4,hID);
-                    insertStatement.setString(5,sID);
-                    insertStatement.setString(6,DT);
+                    System.out.println(strAID + " " + userID + " " + dID + " " + hID + " " + sID + " " + DT);
+                    insertStatement.setString(1, strAID);
+                    insertStatement.setString(2, userID);
+                    insertStatement.setString(3, dID);
+                    insertStatement.setString(4, hID);
+                    insertStatement.setString(5, sID);
+                    insertStatement.setString(6, DT);
                     insertStatement.setString(7, "Booked");
-
+                    insertStatement.executeUpdate();
                     insertStatement.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                catch (Exception e){ e.printStackTrace();}
 
                 //Step 6: decrement slots by 1
                 String updateQuery = "UPDATE schedule SET Slots = Slots - 1 " +
@@ -155,8 +161,7 @@ public class BookAppointmentController {
                 specialtyStmt.close();
                 doctorStmt.close();
 
-            }
-            else{
+            } else {
 
                 showAlert("Error", "Sorry! Appointment full");
             }
@@ -166,62 +171,6 @@ public class BookAppointmentController {
         selectStmt.executeUpdate();
         selectStmt.close();
 
-=======
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-
-public class BookAppointmentController {
-
-    public Button SubmitButton;
-    @FXML
-    private TextField textField;
-
-    @FXML
-    private ComboBox<String> comboBox1;
-
-    @FXML
-    private ComboBox<String> comboBox2;
-
-    @FXML
-    private ComboBox<String> comboBox3;
-
-    @FXML
-    private ComboBox<String> comboBox4;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private Button submitButton;
-
-    @FXML
-    public void initialize() {
-        // Add initialization code here if needed
-        comboBox1.getItems().addAll("Chennai", "Coimbatore", "Salem");
-        comboBox2.getItems().addAll("Dentist", "Cardiologist", "Gynaecologist");
-        comboBox3.getItems().addAll("PSG", "KMCH", "Apollo");
-        comboBox4.getItems().addAll("Ram", "Kavya", "Arun");
-    }
-
-    @FXML
-    public void handleSubmitButtonAction() {
-        String combo1Value = comboBox1.getValue();
-        String combo2Value = comboBox2.getValue();
-        String combo3Value = comboBox3.getValue();
-        String combo4Value = comboBox4.getValue();
-        //String dateValue = datePicker.getValue() != null ? datePicker.getValue().toString() : "";
-
-        if ( combo1Value == null || combo2Value == null || combo3Value == null || combo4Value == null) {
-            showAlert("Error", "Please fill in all the fields.");
-        } else {
-            showAlert("Success", "Appointment details submitted successfully!");
-            // You can perform additional actions here, like storing the data or navigating to another scene
-        }
->>>>>>> origin/DHEVA
     }
 
     private void showAlert(String title, String content) {
@@ -231,8 +180,8 @@ public class BookAppointmentController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-<<<<<<< HEAD
-    public void initialize(){
+
+    public void initialize() {
 
         try {
             Connection connection2 = DatabaseManager.getDbInstance();
@@ -277,18 +226,10 @@ public class BookAppointmentController {
 
             cityCombo.getItems().addAll("Coimbatore", "Chennai", "Salem");
 
-            timeCombo.getItems().addAll("8 AM","9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM", "9PM");
+            timeCombo.getItems().addAll("8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM", "9PM");
 
-        }catch (Exception e){ e.printStackTrace();}
-
-
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
-=======
-
-}
->>>>>>> origin/DHEVA

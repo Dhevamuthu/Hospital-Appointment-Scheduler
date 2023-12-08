@@ -1,5 +1,6 @@
 package com.example.medict2_0;
 
+import com.example.medict2_0.model.Doctor;
 import com.example.medict2_0.model.Patient;
 import com.example.medict2_0.utils.Alerts;
 import com.example.medict2_0.utils.DatabaseManager;
@@ -87,10 +88,33 @@ public class LoginController {
                         }
                     }
                 }
-            } else {
-                Alerts.showAlert("Error", "INVALID ENTRY",Alert.AlertType.ERROR);
+            } else if(userID.startsWith("D") || userID.startsWith("d")) {
+                String dSelectQuery = "SELECT password FROM doctor WHERE DID=?";
+                try (PreparedStatement dSelectStmt = connection.prepareStatement(dSelectQuery)) {
+                    dSelectStmt.setString(1, userID);
+                    try (ResultSet dResultSet = dSelectStmt.executeQuery()) {
+                        if (dResultSet.next()) {
+                            String dCheckPassword = dResultSet.getString("Password");
+                            if (dCheckPassword.equals(pass)) {
+                                Alerts.showAlert("Welcome", "Login Successful!", Alert.AlertType.INFORMATION);
+
+                                // Create a Patient object and set its properties
+                                Doctor loggedInDoctor = new Doctor();
+                                loggedInDoctor.setDID(userID);
+                                // Set other properties as needed
+
+                                // Proceed to the next screen using the logged-in patient object
+                                goToDoctorHome(loggedInDoctor);
+                            } else {
+                                Alerts.showAlert("Warning", "Invalid Password. Please try again.",Alert.AlertType.WARNING);
+                            }
+                        }
+                    }
+                }
+
             }
-        } else {
+        }
+        else {
             Alerts.showAlert("Error", "Enter all the fields",Alert.AlertType.ERROR);
         }
     }
@@ -107,6 +131,23 @@ public class LoginController {
             patientHomeController.initData(loggedInPatient);
 
             curPatientHome.setTitle("Patient Home page");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void goToDoctorHome(Doctor loggedInDoctor) {
+        try {
+            FXMLLoader hosDocHomeLoader = new FXMLLoader(getClass().getResource("HosDoc_home.fxml"));
+            Parent doctorHomeRoot = hosDocHomeLoader.load();
+            Stage curDoctorHome = (Stage) loginButton.getScene().getWindow();
+            curDoctorHome.setScene(new Scene(doctorHomeRoot));
+
+            // Access the controller of the next screen and pass the logged-in patient object
+            HosDocHomeController hosDocHomeController = hosDocHomeLoader.getController();
+            hosDocHomeController.initData(loggedInDoctor);
+
+            curDoctorHome.setTitle("Doctor Home page");
         } catch (IOException e) {
             e.printStackTrace();
         }
