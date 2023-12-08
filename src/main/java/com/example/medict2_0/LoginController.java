@@ -1,12 +1,15 @@
 package com.example.medict2_0;
 
+import com.example.medict2_0.model.Patient;
 import com.example.medict2_0.utils.Alerts;
 import com.example.medict2_0.utils.DatabaseManager;
+import com.example.medict2_0.utils.GlobalUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -38,6 +41,7 @@ public class LoginController {
     public void cancelButtonOnAction(ActionEvent event){
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
+
     }
 
     public void registerButtonOnAction(ActionEvent event){
@@ -57,41 +61,56 @@ public class LoginController {
         Connection connection = DatabaseManager.getDbInstance();
         String userID = userTextField.getText();
         String pass = passwordTextField.getText();
+        GlobalUser.setUserId(userID);
 
         if (!userID.isEmpty()) {
-            //String checkUserID = userID.substring(0, 1);
-            //checkUserID = checkUserID.toUpperCase();
-            System.out.println(userID);
             if (userID.startsWith("P") || userID.startsWith("p")) {
-                String selectQuery = "SELECT password FROM patient WHERE PID=(?)";
-                PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
-                selectStmt.setString(1, userID);
-                ResultSet resultSet = selectStmt.executeQuery();
-                if (resultSet.next()) {
-                    String checkPassword = resultSet.getString("Password");
-                    System.out.println(checkPassword);
-                    if (checkPassword.equals(pass)) {
-                        Alerts.showAlert("Welcome", "Login Successful!");
+                String selectQuery = "SELECT password FROM patient WHERE PID=?";
+                try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery)) {
+                    selectStmt.setString(1, userID);
+                    try (ResultSet resultSet = selectStmt.executeQuery()) {
+                        if (resultSet.next()) {
+                            String checkPassword = resultSet.getString("Password");
+                            if (checkPassword.equals(pass)) {
+                                Alerts.showAlert("Welcome", "Login Successful!", Alert.AlertType.INFORMATION);
 
-                        try{
-                            FXMLLoader patientHomeLoader = new FXMLLoader(getClass().getResource("Patient_home.fxml"));
-                            Parent patientHomeRoot= patientHomeLoader.load();
-                            Stage curPatientHome = (Stage) loginButton.getScene().getWindow();
-                            curPatientHome.setScene(new Scene(patientHomeRoot));
-                            curPatientHome.setTitle("Patient Home page");
-                        }
-                        catch (IOException e){
-                            e.printStackTrace();
-                        }
+                                // Create a Patient object and set its properties
+                                Patient loggedInPatient = new Patient();
+                                loggedInPatient.setPID(userID);
+                                // Set other properties as needed
 
-                    } else { Alerts.showAlert("Error", "Invalid Password. Please try again.");}
+                                // Proceed to the next screen using the logged-in patient object
+                                goToPatientHome(loggedInPatient);
+                            } else {
+                                Alerts.showAlert("Warning", "Invalid Password. Please try again.",Alert.AlertType.WARNING);
+                            }
+                        }
+                    }
                 }
-            } else { Alerts.showAlert("Error", "INVALID ENTRY");}
-        } else { Alerts.showAlert("Error", "Enter all the fields");}
-
-
-
-
+            } else {
+                Alerts.showAlert("Error", "INVALID ENTRY",Alert.AlertType.ERROR);
+            }
+        } else {
+            Alerts.showAlert("Error", "Enter all the fields",Alert.AlertType.ERROR);
+        }
     }
+
+    private void goToPatientHome(Patient loggedInPatient) {
+        try {
+            FXMLLoader patientHomeLoader = new FXMLLoader(getClass().getResource("Patient_home.fxml"));
+            Parent patientHomeRoot = patientHomeLoader.load();
+            Stage curPatientHome = (Stage) loginButton.getScene().getWindow();
+            curPatientHome.setScene(new Scene(patientHomeRoot));
+
+            // Access the controller of the next screen and pass the logged-in patient object
+            PatientHomeController patientHomeController = patientHomeLoader.getController();
+            patientHomeController.initData(loggedInPatient);
+
+            curPatientHome.setTitle("Patient Home page");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

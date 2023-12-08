@@ -20,10 +20,17 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/doctor" />
+      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/schedule" />
+      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/appointment" />
+      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/hospital" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.patient" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.specialty" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.schedule" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.hospital" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.doctor" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.appointment" active-filter-id="EMPTY_FILTER" />

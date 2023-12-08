@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class HospitalRegController {
 
@@ -51,7 +50,8 @@ public class HospitalRegController {
         Stage stage=(Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    public void registerButtonOnAction() throws SQLException {
+
+    public void registerButtonOnAction() {
         try {
             Connection connection = DatabaseManager.getDbInstance();
             String name = nameTextField.getText();
