@@ -16,9 +16,6 @@ public class doctor_accountController {
     private AnchorPane anchorPane;
 
     @FXML
-    private ImageView profileImageView;
-
-    @FXML
     private TextField nameTextField;
 
     @FXML

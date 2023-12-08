@@ -20,9 +20,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" object-ref="schemas/medict/tables/schedule" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="ff532646-5b8b-481b-847d-0e41fbfa8d6d" dataset="medict.patient" active-filter-id="EMPTY_FILTER" />
