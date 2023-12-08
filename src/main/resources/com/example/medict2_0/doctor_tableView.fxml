@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="498.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.doctorTableViewController">
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="887.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Desktop/Java/image/View_Page.jpg" />
+         </image>
+      </ImageView>
+      <TableView layoutY="135.0" prefHeight="364.0" prefWidth="887.0">
+        <columns>
+          <TableColumn fx:id="appointmentIDCloumn" prefWidth="137.60000610351562" text="Appointment " />
+          <TableColumn fx:id="patientname8Column" minWidth="2.4000244140625" prefWidth="138.39996337890625" text="Patient " />
+            <TableColumn fx:id="HospitalColumn" prefWidth="232.800048828125" text="Hospital " />
+            <TableColumn fx:id="SpecialtyColumn" prefWidth="160.800048828125" text="Specialty" />
+            <TableColumn fx:id="dateColumn" prefWidth="107.199951171875" text="Date" />
+            <TableColumn fx:id="timeCloumn" prefWidth="112.7999267578125" text="Time" />
+        </columns>
+      </TableView>
+      <Text layoutX="38.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Table" wrappingWidth="339.7366943359375">
+         <font>
+            <Font size="54.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
