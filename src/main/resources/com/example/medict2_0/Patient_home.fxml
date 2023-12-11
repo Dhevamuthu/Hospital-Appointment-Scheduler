@@ -12,7 +12,7 @@
          </image>
       </ImageView>
       <Button fx:id="BookAppButton" layoutX="226.0" layoutY="173.0" mnemonicParsing="false" onAction="#BookAppButtonOnAction" prefHeight="28.0" prefWidth="118.0" style="-fx-border-color: black; -fx-background-color: black; -fx-font-family: Lato;" text="Book Appointment" textFill="WHITE" />
-      <Button fx:id="AppHistorybutton" layoutX="389.0" layoutY="173.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="154.0" style="-fx-border-color: #000000; -fx-background-color: black; -fx-font-family: Lato;" text="Appointment History" textFill="WHITE" />
+      <Button fx:id="AppHistorybutton" layoutX="389.0" layoutY="173.0" mnemonicParsing="false" onAction="#AppHistoryButtonOnAction" prefHeight="28.0" prefWidth="154.0" style="-fx-border-color: #000000; -fx-background-color: black; -fx-font-family: Lato;" text="Appointment History" textFill="WHITE" />
       <Button fx:id="myAccountButton" layoutX="598.0" layoutY="173.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="134.0" style="-fx-border-color: #000000; -fx-background-color: black; -fx-font-family: Lato;" text="My Account" textFill="WHITE" />
       <Button fx:id="logoutButton" layoutX="785.0" layoutY="173.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="28.0" prefWidth="134.0" style="-fx-border-color: #000000; -fx-background-color: black; -fx-font-family: Lato;" text="Logout" textFill="WHITE" />
    </children>

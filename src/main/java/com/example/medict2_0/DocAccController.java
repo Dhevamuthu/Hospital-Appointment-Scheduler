@@ -1,3 +1,5 @@
+package com.example.medict2_0;
+
 import com.example.medict2_0.utils.DatabaseManager;
 import com.example.medict2_0.utils.GlobalUser;
 import javafx.fxml.FXML;
@@ -47,7 +49,7 @@ public class DocAccController {
     public void initialize() {
         String doctorID = GlobalUser.getUserId();
 
-        try {
+        /*try {
             String query = "SELECT * FROM doctor WHERE DID = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, doctorID);
@@ -67,6 +69,6 @@ public class DocAccController {
         } catch (SQLException e) {
             e.printStackTrace();
             // Handle exceptions accordingly
-        }
+        }*/
     }
 }

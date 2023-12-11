@@ -20,7 +20,6 @@ public class DatabaseManager {
     private static Connection establishConnection() throws SQLException {
         // todo: Establish and return connection;
         Connection con;
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/medict","root","12345");
-        return con;
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/medict","root","12345");
     }
 }

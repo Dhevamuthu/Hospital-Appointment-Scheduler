@@ -140,6 +140,7 @@ public class SetScheduleController {
             }
 
         }
+        navigateToHomeWindow();
     }
 
     private void showAlert(String title, String content) {
@@ -154,7 +155,7 @@ public class SetScheduleController {
         try {
             // Load the FXML file for the home window
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("View_Appointment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HosDoc_home.fxml"));
             Parent root = loader.load();
 
             // Create a new scene
@@ -166,9 +167,6 @@ public class SetScheduleController {
             // Set the scene to the stage
             stage.setScene(scene);
 
-            // Optional: You can set additional properties or pass data to the controller of the new scene
-            // HomeController homeController = loader.getController();
-            // homeController.initializeData(...);
 
             // Show the stage
             stage.show();

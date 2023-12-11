@@ -9,6 +9,17 @@ public class Appointment {
     private String DT;
     private String status;
 
+    public Appointment(String aid, String pid, String did, String hid, String sid, String dt, String status) {
+        System.out.println("AID: " + aid + ", PID: " + pid + ", DID: " + did + ", HID: " + hid + ", SID: " + sid + ", DT: " + dt + ", Status: " + status);
+        this.AID = aid;
+        this.PID = pid;
+        this.DID = did;
+        this.HID = hid;
+        this.SID = sid;
+        this.DT = dt;
+        this.status = status;
+    }
+
     public String getAID() {
         return AID;
     }

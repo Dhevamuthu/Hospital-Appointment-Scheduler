@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="570.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.AppHisController">
+   <children>
+      <ImageView fitHeight="589.0" fitWidth="807.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@View_Appointment%20bg.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="appHisTableView" layoutX="1.0" layoutY="141.0" prefHeight="375.0" prefWidth="804.0">
+        <columns>
+          <TableColumn fx:id="appTable" prefWidth="126.39999234676361" text="APPOINTMENT" />
+          <TableColumn fx:id="docTable" prefWidth="127.19998931884766" text="DOCTOR" />
+            <TableColumn fx:id="hosTable" prefWidth="119.20001220703125" text="HOSPITAL" />
+            <TableColumn fx:id="specTable" prefWidth="116.79998779296875" text="SPECIALTY" />
+            <TableColumn fx:id="dtTable" prefWidth="171.99996948242188" text="DATE TIME" />
+            <TableColumn fx:id="statusTable" prefWidth="144.0" text="STATUS" />
+        </columns>
+      </TableView>
+      <Button fx:id="appQuitButton" layoutX="333.0" layoutY="523.0" mnemonicParsing="false" onAction="#appQuitButtonOnAction" prefHeight="26.0" prefWidth="139.0" style="-fx-background-color: black;" text="QUIT" textFill="WHITE" />
+   </children>
+</AnchorPane>

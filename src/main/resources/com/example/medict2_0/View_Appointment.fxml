@@ -2,35 +2,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="589.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.ViewAppointment">
+<AnchorPane prefHeight="589.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.ViewAppointmentController">
    <children>
       <ImageView fitHeight="692.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Downloads/Modern%20Geometric%20Easter%20Sale%20Ads%20(Poster%20(Landscape))%20(1).png" />
+            <Image url="@View_Appointment bg.png" />
          </image>
       </ImageView>
-      <TreeTableView layoutY="261.0" prefHeight="368.0" prefWidth="950.0">
-        <columns>
-          <TreeTableColumn prefWidth="129.60000324249268" text="AppointmentID" />
-          <TreeTableColumn prefWidth="128.00001525878906" text="PatientID" />
-            <TreeTableColumn minWidth="0.0" prefWidth="128.79998779296875" text="DoctorID" />
-            <TreeTableColumn minWidth="0.0" prefWidth="124.79998779296875" text="Hospital ID" />
-            <TreeTableColumn minWidth="0.0" prefWidth="124.79998779296875" text="SpecialityID" />
-            <TreeTableColumn minWidth="0.0" prefWidth="97.60003662109375" text="Date" />
-            <TreeTableColumn minWidth="0.0" prefWidth="97.60003662109375" text="Time" />
-            <TreeTableColumn minWidth="0.0" prefWidth="115.1998291015625" text="Status" />
-        </columns>
-      </TreeTableView>
       <RadioButton layoutX="96.0" layoutY="175.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="190.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="View All Appointments" />
       <RadioButton layoutX="378.0" layoutY="175.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="214.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="View current week's Appointments" />
       <RadioButton layoutX="666.0" layoutY="175.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="214.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="View today's Appointments" />
-      <Button fx:id="QuitButton" layoutX="803.0" layoutY="639.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" style="-fx-border-color: #000000;" text="Quit" />
+      <Button fx:id="QuitButton" layoutX="803.0" layoutY="639.0" mnemonicParsing="false" onAction="#QuitButtonOnAction" prefHeight="26.0" prefWidth="116.0" style="-fx-border-color: #000000;" text="Quit" />
+      <TableView fx:id="tableView" layoutX="2.0" layoutY="298.0" prefHeight="314.0" prefWidth="950.0">
+        <columns>
+          <TableColumn fx:id="appTable" prefWidth="135.99996638298035" text="APPOINTMENT" />
+          <TableColumn fx:id="patTable" prefWidth="99.99996948242188" text="PATIENT" />
+            <TableColumn fx:id="docTable" prefWidth="112.80006408691406" text="DOCTOR" />
+            <TableColumn fx:id="hosTable" minWidth="0.0" prefWidth="119.99993896484375" text="HOSPITAL" />
+            <TableColumn fx:id="specTable" prefWidth="164.800048828125" text="SPECIALTY" />
+            <TableColumn fx:id="dtTable" prefWidth="174.4000244140625" text="DATE TIME" />
+            <TableColumn fx:id="statusTable" prefWidth="140.0" text="STATUS" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

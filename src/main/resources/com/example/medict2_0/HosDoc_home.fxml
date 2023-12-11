@@ -11,7 +11,7 @@
             <Image url="@home_hosdoc.png" />
          </image>
       </ImageView>
-      <Button fx:id="viewAppbutton" layoutX="215.0" layoutY="175.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="169.0" style="-fx-border-color: #000000; -fx-background-color: black;" text="View Appointments" textFill="WHITE" />
+      <Button fx:id="viewAppbutton" layoutX="215.0" layoutY="175.0" mnemonicParsing="false" onAction="#viewAppbuttonOnAction" prefHeight="27.0" prefWidth="169.0" style="-fx-border-color: #000000; -fx-background-color: black;" text="View Appointments" textFill="WHITE" />
       <Button fx:id="MyAccount_button" layoutX="573.0" layoutY="175.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: #000000; -fx-background-color: black;" text="My Account" textFill="WHITE" />
       <Button fx:id="setScheduleButton" layoutX="416.0" layoutY="175.0" mnemonicParsing="false" onAction="#setScheduleButtonOnAction" prefHeight="27.0" prefWidth="118.0" style="-fx-border-color: #000000; -fx-background-color: black;" text="Set Schedule" textFill="WHITE" />
       <Button fx:id="logoutButton" layoutX="716.0" layoutY="175.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="27.0" prefWidth="103.0" style="-fx-border-color: #000000; -fx-background-color: black;" text="Logout" textFill="WHITE" />

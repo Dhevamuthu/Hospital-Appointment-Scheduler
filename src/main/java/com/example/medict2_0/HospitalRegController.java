@@ -3,6 +3,9 @@ package com.example.medict2_0;
 import com.example.medict2_0.utils.DatabaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -10,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,6 +121,7 @@ public class HospitalRegController {
             connection.close();
         }
         catch (Exception e){ e.printStackTrace();}
+        navigateToLoginWindow();
     }
 
     private void showAlert(String title, String content) {
@@ -125,6 +130,33 @@ public class HospitalRegController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void navigateToLoginWindow() {
+        try {
+            // Load the FXML file for the home window
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) registerButton.getScene().getWindow();
+
+            // Set the scene to the stage
+            stage.setScene(scene);
+
+            // Optional: You can set additional properties or pass data to the controller of the new scene
+            // HomeController homeController = loader.getController();
+            // homeController.initializeData(...);
+
+            // Show the stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
     }
     public void initialize(){
         comboBox.getItems().addAll("Coimbatore","Chennai","Salem");

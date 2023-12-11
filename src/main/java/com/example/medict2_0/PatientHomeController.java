@@ -2,6 +2,7 @@ package com.example.medict2_0;
 
 import com.example.medict2_0.model.Patient;
 import com.example.medict2_0.utils.Alerts;
+import com.example.medict2_0.utils.GlobalUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,6 +50,7 @@ public class PatientHomeController {
 
         Stage stage=(Stage) logoutButton.getScene().getWindow();
         stage.close();
+        GlobalUser.setUserId(null);
     }
 
     public void myAccountButtonOnAction(ActionEvent event){
@@ -64,6 +66,18 @@ public class PatientHomeController {
         }
     }
 
+    public void AppHistoryButtonOnAction(ActionEvent event){
+        try{
+            FXMLLoader appHisLoader = new FXMLLoader(getClass().getResource("app_his.fxml"));
+            Parent appHisRoot= appHisLoader.load();
+            Stage curAppHis = (Stage) AppHistorybutton.getScene().getWindow();
+            curAppHis.setScene(new Scene(appHisRoot));
+            curAppHis.setTitle("Appointment Booking page");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public void initData(Patient loggedInPatient) {
     }

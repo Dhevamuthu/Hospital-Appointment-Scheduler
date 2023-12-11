@@ -21,13 +21,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ViewAppointmentController {
+public class AppHisController {
 
     @FXML
-    private Button QuitButton;
+    private TableView<Appointment> appHisTableView;
 
     @FXML
-    private TableView<Appointment> tableView;
+    private Button appQuitButton;
 
     @FXML
     private TableColumn<Appointment, String> appTable;
@@ -42,20 +42,10 @@ public class ViewAppointmentController {
     private TableColumn<Appointment, String> hosTable;
 
     @FXML
-    private TableColumn<Appointment, String> patTable;
-
-    @FXML
     private TableColumn<Appointment, String> specTable;
 
     @FXML
     private TableColumn<Appointment, String> statusTable;
-
-    @FXML
-    void QuitButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) QuitButton.getScene().getWindow();
-        stage.close();
-        navigateToHomeWindow();
-    }
 
     @FXML
     public void initialize() {
@@ -68,7 +58,6 @@ public class ViewAppointmentController {
         dtTable.setCellValueFactory(new PropertyValueFactory<>("DT"));
         docTable.setCellValueFactory(new PropertyValueFactory<>("DID"));
         hosTable.setCellValueFactory(new PropertyValueFactory<>("HID"));
-        patTable.setCellValueFactory(new PropertyValueFactory<>("PID"));
         specTable.setCellValueFactory(new PropertyValueFactory<>("SID"));
         statusTable.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
@@ -79,9 +68,6 @@ public class ViewAppointmentController {
             ObservableList<Appointment> appointments = FXCollections.observableArrayList();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM appointment");
             ResultSet rs = ps.executeQuery();
-
-            //updation
-
 
             while (rs.next()) {
                 appointments.add(new Appointment(
@@ -95,7 +81,7 @@ public class ViewAppointmentController {
                 ));
             }
 
-            tableView.setItems(appointments);
+            appHisTableView.setItems(appointments);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,27 +90,35 @@ public class ViewAppointmentController {
         }
     }
 
-    private void navigateToHomeWindow() {
+    public void appQuitButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) appQuitButton.getScene().getWindow();
+        stage.close();
+        navigateToPatHomeWindow1();
+    }
+
+    private void navigateToPatHomeWindow1() {
         try {
             // Load the FXML file for the home window
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HosDoc_home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Patient_home.fxml"));
             Parent root = loader.load();
 
             // Create a new scene
             Scene scene = new Scene(root);
 
             // Get the current stage
-            Stage stage = (Stage) QuitButton.getScene().getWindow();
+            Stage stage = (Stage) appQuitButton.getScene().getWindow();
 
             // Set the scene to the stage
             stage.setScene(scene);
 
-
             // Show the stage
             stage.show();
         } catch (IOException e) {
+            // Print or log a more descriptive error message
+            System.err.println("Error loading the FXML file: " + e.getMessage());
             e.printStackTrace(); // Handle the exception appropriately
         }
     }
+
+
 }

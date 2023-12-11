@@ -39,7 +39,18 @@ public class HosDocHomeController {
             e.printStackTrace();
         }
     }
-
+    public void viewAppbuttonOnAction(ActionEvent event){
+        try{
+            FXMLLoader viewAppLoader = new FXMLLoader(getClass().getResource("View_Appointment.fxml"));
+            Parent viewAppRoot= viewAppLoader.load();
+            Stage curViewApp = (Stage) viewAppbutton.getScene().getWindow();
+            curViewApp.setScene(new Scene(viewAppRoot));
+            curViewApp.setTitle("View Appointment page");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public void logoutButtonOnAction(ActionEvent event){
         Alerts.showAlert("Logout", "Thank you for using MEDICT", Alert.AlertType.INFORMATION);
 
