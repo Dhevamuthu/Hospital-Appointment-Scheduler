@@ -2,10 +2,14 @@ package com.example.medict2_0;
 
 import java.util.Properties;
 import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.util.Properties;
 public class javaMail {
     public static void main(String[] args) {
-        final String username = "dhevadharshini.m2022cce@sece.ac.in";
+        final String username = "sece.ac.in";
         final String password = "BPRnEaas1C8pDDK9";
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
