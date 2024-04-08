@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="665.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.AdminSignupController">
+   <children>
+      <ImageView fitHeight="754.0" fitWidth="1206.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@HOSPITAL_SIGNUP.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nameTextField" layoutX="452.0" layoutY="191.0" prefHeight="27.0" prefWidth="188.0" promptText="Name" style="-fx-border-color: #000000;" />
+      <TextField fx:id="emailTextField" layoutX="452.0" layoutY="241.0" prefHeight="27.0" prefWidth="188.0" promptText="Email_ID" style="-fx-border-color: #000000;" />
+      <TextField fx:id="otherTextField" layoutX="452.0" layoutY="297.0" prefHeight="27.0" prefWidth="188.0" style="-fx-border-color: #000000;" />
+      <TextField layoutX="452.0" layoutY="377.0" prefHeight="27.0" prefWidth="188.0" style="-fx-border-color: #000000;" />
+      <ComboBox fx:id="comboBox" layoutX="452.0" layoutY="453.0" prefHeight="26.0" prefWidth="188.0" style="-fx-border-color: #000000;" />
+      <TextField layoutX="452.0" layoutY="507.0" prefHeight="27.0" prefWidth="188.0" style="-fx-border-color: #000000;" />
+      <TextField layoutX="452.0" layoutY="558.0" prefHeight="27.0" prefWidth="188.0" style="-fx-border-color: #000000;" />
+      <Button fx:id="registerButton" layoutX="388.0" layoutY="661.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #00008B;" text="Register" textFill="WHITE" />
+      <Button fx:id="cancelButton" layoutX="594.0" layoutY="661.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #00008B;" text="Cancel" textFill="WHITE" />
+   </children>
+</AnchorPane>

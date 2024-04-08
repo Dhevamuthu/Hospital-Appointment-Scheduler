@@ -19,5 +19,6 @@
       <ComboBox fx:id="slotCombo" layoutX="343.0" layoutY="486.0" prefHeight="26.0" prefWidth="184.0" promptText="slots" />
       <DatePicker fx:id="dateDatePicker" layoutX="336.0" layoutY="296.0" prefHeight="26.0" prefWidth="195.0" promptText="Date" />
       <Button fx:id="button" layoutX="336.0" layoutY="592.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #000000;" text="Submit" textFill="#f7f2f2" />
+      <Button fx:id="Exitbutton" layoutX="461.0" layoutY="592.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #000000;" text="Exit" textFill="#f7f2f2" />
    </children>
 </AnchorPane>

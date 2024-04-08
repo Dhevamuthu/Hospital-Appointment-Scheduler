@@ -8,12 +8,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="589.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.ViewAppointment">
+<AnchorPane prefHeight="589.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medict2_0.ViewAppointmentController">
    <children>
       <ImageView fitHeight="692.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Downloads/Modern%20Geometric%20Easter%20Sale%20Ads%20(Poster%20(Landscape))%20(1).png" />
+            <Image url="@View_Appointment bg.png" />
          </image>
       </ImageView>
       <TreeTableView layoutY="261.0" prefHeight="368.0" prefWidth="950.0">
@@ -31,6 +30,6 @@
       <RadioButton layoutX="96.0" layoutY="175.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="190.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="View All Appointments" />
       <RadioButton layoutX="378.0" layoutY="175.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="214.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="View current week's Appointments" />
       <RadioButton layoutX="666.0" layoutY="175.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="214.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" text="View today's Appointments" />
-      <Button fx:id="QuitButton" layoutX="803.0" layoutY="639.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" style="-fx-border-color: #000000;" text="Quit" />
+      <Button fx:id="quitButton" layoutX="803.0" layoutY="639.0" mnemonicParsing="false" onAction="#handleQuitButtonAction" prefHeight="26.0" prefWidth="116.0" style="-fx-border-color: #000000;" text="Quit" />
    </children>
 </AnchorPane>

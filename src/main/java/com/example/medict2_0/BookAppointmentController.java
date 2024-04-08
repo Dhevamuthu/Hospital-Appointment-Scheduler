@@ -9,46 +9,44 @@ import javafx.scene.control.TextField;
 
 public class BookAppointmentController {
 
-    public Button SubmitButton;
     @FXML
-    private TextField textField;
+    private TextField timetextField;
 
     @FXML
-    private ComboBox<String> comboBox1;
+    private ComboBox<String> cityCombo;
 
     @FXML
-    private ComboBox<String> comboBox2;
+    private ComboBox<String> specialityCombo;
 
     @FXML
-    private ComboBox<String> comboBox3;
+    private ComboBox<String> hospitalCombo;
 
     @FXML
-    private ComboBox<String> comboBox4;
+    private ComboBox<String> doctorCombo;
 
     @FXML
-    private DatePicker datePicker;
+    private DatePicker dateDatePicker;
 
     @FXML
-    private Button submitButton;
+    private Button SubmitButton;
 
     @FXML
     public void initialize() {
         // Add initialization code here if needed
-        comboBox1.getItems().addAll("Chennai", "Coimbatore", "Salem");
-        comboBox2.getItems().addAll("Dentist", "Cardiologist", "Gynaecologist");
-        comboBox3.getItems().addAll("PSG", "KMCH", "Apollo");
-        comboBox4.getItems().addAll("Ram", "Kavya", "Arun");
+        cityCombo.getItems().addAll("Chennai", "Coimbatore", "Salem");
+        specialityCombo.getItems().addAll("Dentist", "Cardiologist", "Gynaecologist");
+        hospitalCombo.getItems().addAll("PSG", "KMCH", "Apollo");
+        doctorCombo.getItems().addAll("Ram", "Kavya", "Arun");
     }
 
     @FXML
     public void handleSubmitButtonAction() {
-        String combo1Value = comboBox1.getValue();
-        String combo2Value = comboBox2.getValue();
-        String combo3Value = comboBox3.getValue();
-        String combo4Value = comboBox4.getValue();
-        //String dateValue = datePicker.getValue() != null ? datePicker.getValue().toString() : "";
+        String cityValue = cityCombo.getValue();
+        String specialityValue = specialityCombo.getValue();
+        String hospitalValue = hospitalCombo.getValue();
+        String doctorValue = doctorCombo.getValue();
 
-        if ( combo1Value == null || combo2Value == null || combo3Value == null || combo4Value == null) {
+        if (cityValue == null || specialityValue == null || hospitalValue == null || doctorValue == null) {
             showAlert("Error", "Please fill in all the fields.");
         } else {
             showAlert("Success", "Appointment details submitted successfully!");
@@ -63,5 +61,4 @@ public class BookAppointmentController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }
